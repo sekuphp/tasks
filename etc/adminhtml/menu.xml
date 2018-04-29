@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+      <add id="Seku_Tasks::tasks" title="Tasks" translate="title" module="Seku_Tasks" parent="Magento_Backend::content" sortOrder="50" dependsOnModule="Seku_Tasks" resource="Seku_Tasks::tasks"/>
+      <add id="Seku_Tasks::task_list" title="Task List" translate="title" module="Seku_Tasks" parent="Seku_Tasks::tasks" sortOrder="10" dependsOnModule="Seku_Tasks" action="tasks/task" resource="Seku_Tasks::tasks"/>
+    </menu>
+</config>

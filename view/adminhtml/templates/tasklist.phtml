@@ -1,0 +1,43 @@
+<?php 
+$tasks = $block->getTasks();
+?>
+<?php if ($tasks && count($tasks)): ?>
+<table class="data-grid">
+<tr>
+	<th class="data-grid-th" style="width: 130px;">Дата создания</th>
+	<th class="data-grid-th" style="width: 30%;">Название</th>
+	<th class="data-grid-th">Описание</th>
+	<th class="data-grid-th" style="width: 30px;"></th>
+</tr>
+<?php  foreach ($tasks as $task): ?>
+<?php 
+$data = $task->getData();
+//print_r($data); break;
+?>	
+<tr>
+	<td><?=date('d.m.Y h:i', strtotime($data['created_at']))?></td>
+    <td><a href="<?=$block->getLink('edit', $data['id'])?>"><?=$data['title']?></a></td>
+	<td><?=$data['text']?></td>
+	<td><a href="<?=$block->getLink('delete', $data['id'])?>" class="action-close" style="color:red; font-weight: bold"></a></td>
+</tr>
+
+<?php endforeach; ?>
+</table>
+<?php endif ?>
+<br /><br />
+<div class="fieldset-wrapper-title"><span class="title">Добавить задачу</span></div>
+<br />
+<form action="<?=$block->getLink('add')?>" method="post">
+  <div class="form-group">
+  	<div>
+    <label for="name">Название:</label> <br />
+    <input type="text" class="input" style="width: 300px" name="title" id="name">
+	</div>
+	<div>
+    <label for="text">Описание:</label> <br />
+    <textarea class="input" name="text"  style="width: 300px" id="text"></textarea>
+	</div>
+    <button type="submit" class="btn btn-default">Сохранить</button>
+  </div>
+  <input name="form_key" type="hidden" value="<?=$block->getFormKey()?>">
+</form>
